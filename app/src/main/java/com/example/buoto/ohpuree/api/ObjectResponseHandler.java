@@ -15,6 +15,7 @@ import cz.msebera.android.httpclient.Header;
  */
 public abstract class ObjectResponseHandler<T> extends AsyncHttpResponseHandler {
     public static final String DEFAULT_CHARSET = "UTF-8";
+    protected static String TAG = "APIClient";
     private final Class<T> cls;
     private final Gson gson;
 
@@ -38,7 +39,7 @@ public abstract class ObjectResponseHandler<T> extends AsyncHttpResponseHandler 
 
     public abstract void onSuccess(int statusCode, T object);
 
-    public abstract void onFailure(int statusCode, String reponseString);
+    public abstract void onFailure(int statusCode, String responseString);
 
 
 }
