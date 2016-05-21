@@ -9,18 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.buoto.ohpuree.ChooseProductsActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical">
 
         <EditText
             android:id="@+id/query"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/szukaj"
+            android:singleLine="true" />
 
         <ListView
             android:id="@+id/listView"
@@ -28,5 +23,4 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:choiceMode="multipleChoice" />
-    </LinearLayout>
 </RelativeLayout>

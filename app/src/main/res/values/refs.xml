@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <drawable name="solid_white">#FFFFFF</drawable>
-    <drawable name="listitem_pressed">#CCCCCC</drawable>
-    <drawable name="listitem_focused">#EEEE00</drawable>
-</resources>

@@ -1,13 +1,10 @@
 package com.example.buoto.ohpuree;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -17,9 +14,11 @@ import android.widget.ListView;
 
 import com.example.buoto.ohpuree.controller.ProductSearchController;
 import com.example.buoto.ohpuree.model.Product;
+import com.google.gson.Gson;
 
 public class ChooseProductsActivity extends AppCompatActivity {
 
+    public static final int SKILL_SELECTED = 11232;
     private ProductSearchController controller;
     private ListView listView;
     private EditText queryField;
@@ -51,33 +50,6 @@ public class ChooseProductsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                listView.clearChoices();
-                listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-                    @Override
-                    public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-
-                    }
-
-                    @Override
-                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                        return false;
-                    }
-
-                    @Override
-                    public void onDestroyActionMode(ActionMode mode) {
-                        Log.d("xd", "distroy");
-                    }
-                });
                 controller.fetchInitial(s.toString());
             }
         });
@@ -110,9 +82,18 @@ public class ChooseProductsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                controller.changeState(position);
+                returnProduct((Product) parent.getItemAtPosition(position));
             }
         });
+    }
+
+    private void returnProduct(Product chosen) {
+        Gson gson = new Gson();
+        String serialized = gson.toJson(chosen);
+        Intent intent = new Intent();
+        intent.putExtra("product", serialized);
+        setResult(SKILL_SELECTED, intent);
+        finish();
     }
 
 }

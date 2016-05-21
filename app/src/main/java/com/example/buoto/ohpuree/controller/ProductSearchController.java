@@ -11,14 +11,12 @@ import com.example.buoto.ohpuree.model.Product;
 import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * Created by buoto on 5/21/16.
  */
 public class ProductSearchController {
 
-    private final HashSet<Product> chosen = new HashSet<>();
     private final ArrayAdapter<Product> adapter;
     private RequestParams nextParams = null;
     private boolean hasMore = false;
@@ -50,7 +48,6 @@ public class ProductSearchController {
             public void onSuccess(int statusCode, ProductsResponse object) {
                 if (shouldClear && !adapter.isEmpty()) {
                     adapter.clear();
-                    adapter.addAll(chosen);
                 }
                 appendNewElements(object);
                 setNextParams(object);
@@ -65,9 +62,6 @@ public class ProductSearchController {
 
     private void appendNewElements(ProductsResponse object) {
         ArrayList<Product> prods = object.getResults();
-        for (Product p : chosen) {
-            prods.remove(p);
-        }
         adapter.addAll(prods);
     }
 
@@ -86,22 +80,4 @@ public class ProductSearchController {
         }
     }
 
-    public void changeState(int position) {
-        synchronized (adapter) {
-            Product product = adapter.getItem(position);
-            if (chosen.contains(product)) {
-                unselectProduct(product);
-            } else {
-                selectProduct(product);
-            }
-        }
-    }
-
-    private void selectProduct(Product product) {
-        chosen.add(product);
-    }
-
-    private void unselectProduct(Product product) {
-        chosen.remove(product);
-    }
 }

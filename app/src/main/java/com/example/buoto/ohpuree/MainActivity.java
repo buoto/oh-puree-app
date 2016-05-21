@@ -9,10 +9,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.buoto.ohpuree.api.APIClient;
 import com.example.buoto.ohpuree.api.ObjectResponseHandler;
 import com.example.buoto.ohpuree.api.response.SearchResponse;
+import com.example.buoto.ohpuree.model.Product;
+import com.google.gson.Gson;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startChoose() {
         Intent intent = new Intent(this, ChooseProductsActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, ChooseProductsActivity.SKILL_SELECTED);
     }
 
     @Override
@@ -76,5 +79,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ChooseProductsActivity.SKILL_SELECTED) {
+            Gson gson = new Gson();
+            String json = data.getExtras().getString("product");
+            Product product = gson.fromJson(json, Product.class);
+            addProduct(product);
+        }
+    }
+
+    private void addProduct(Product product) {
+        TextView t = (TextView) findViewById(R.id.hello);
+        assert t != null;
+        t.append(product.toString());
     }
 }
