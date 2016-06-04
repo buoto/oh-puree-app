@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimary">#D32F2F</color>
     <color name="colorPrimaryDark">#B71C1C</color>
+    <color name="colorPrimaryTint">#170C0C</color>
     <color name="colorAccent">#388E3C</color>
-
     <color name="yellow">#FFEB3B</color>
     <color name="orange">#FB8C00</color>
 
