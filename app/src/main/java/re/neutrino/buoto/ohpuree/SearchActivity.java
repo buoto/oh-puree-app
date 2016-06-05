@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.cunoraz.tagview.OnTagClickListener;
 import com.cunoraz.tagview.Tag;
 import com.cunoraz.tagview.TagView;
 import com.google.gson.Gson;
@@ -66,7 +67,14 @@ public class SearchActivity extends AppCompatActivity {
     private void initTags() {
         tagView = (TagView) findViewById(R.id.tag_group);
         assert tagView != null;
+        tagView.setOnTagClickListener(new OnTagClickListener() {
+            @Override
+            public void onTagClick(Tag tag, int position) {
+                deleteProduct(position);
+            }
+        });
     }
+
 
     private void initFAB() {
         final AppBarLayout bar = (AppBarLayout) findViewById(R.id.app_bar);
@@ -108,5 +116,10 @@ public class SearchActivity extends AppCompatActivity {
         //noinspection deprecation
         t.layoutColor = getResources().getColor(R.color.colorAccent);
         tagView.addTag(t);
+    }
+
+    private void deleteProduct(int position) {
+        controller.removeProduct(position);
+        tagView.remove(position);
     }
 }
