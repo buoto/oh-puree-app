@@ -1,10 +1,11 @@
-package re.neutrino.buoto.ohpuree;
+package re.neutrino.buoto.ohpuree.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,6 +16,7 @@ import com.google.gson.Gson;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import cz.msebera.android.httpclient.Header;
+import re.neutrino.buoto.ohpuree.R;
 import re.neutrino.buoto.ohpuree.controller.SearchController;
 import re.neutrino.buoto.ohpuree.model.Product;
 
@@ -28,8 +30,6 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         initTags();
         initFAB();
@@ -53,7 +53,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-
+                Log.e(TAG, responseString);
             }
         });
     }

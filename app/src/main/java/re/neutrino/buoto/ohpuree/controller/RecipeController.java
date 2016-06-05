@@ -1,4 +1,4 @@
-package com.example.buoto.ohpuree.controller;
+package re.neutrino.buoto.ohpuree.controller;
 
 import com.google.gson.Gson;
 

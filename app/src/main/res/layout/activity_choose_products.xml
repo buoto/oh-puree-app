@@ -7,7 +7,7 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="re.neutrino.buoto.ohpuree.ChooseProductsActivity">
+    tools:context=".view.ChooseProductsActivity">
 
 
         <EditText

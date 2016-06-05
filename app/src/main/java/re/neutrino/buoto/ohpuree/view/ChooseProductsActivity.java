@@ -1,4 +1,4 @@
-package re.neutrino.buoto.ohpuree;
+package re.neutrino.buoto.ohpuree.view;
 
 import android.content.Intent;
 import android.os.Bundle;

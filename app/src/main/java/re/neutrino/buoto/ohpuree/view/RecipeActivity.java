@@ -1,4 +1,4 @@
-package re.neutrino.buoto.ohpuree;
+package re.neutrino.buoto.ohpuree.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,8 +6,10 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.buoto.ohpuree.controller.RecipeController;
 import com.squareup.picasso.Picasso;
+
+import re.neutrino.buoto.ohpuree.R;
+import re.neutrino.buoto.ohpuree.controller.RecipeController;
 
 public class RecipeActivity extends AppCompatActivity {
 

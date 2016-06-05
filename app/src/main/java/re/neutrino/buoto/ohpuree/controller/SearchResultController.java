@@ -1,12 +1,12 @@
-package com.example.buoto.ohpuree.controller;
+package re.neutrino.buoto.ohpuree.controller;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import re.neutrino.buoto.ohpuree.ResultsActivity;
 import re.neutrino.buoto.ohpuree.api.response.SearchResponse;
 import re.neutrino.buoto.ohpuree.model.Recipe;
+import re.neutrino.buoto.ohpuree.view.ResultsActivity;
 
 /**
  * Created by buoto on 6/5/16.

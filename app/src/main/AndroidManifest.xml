@@ -10,14 +10,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.ChooseProductsActivity" />
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".ChooseProductsActivity" />
-        <activity
-            android:name=".SearchActivity"
+            android:name=".view.SearchActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -29,11 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResultsActivity"
+            android:name=".view.ResultsActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RecipeActivity"
+            android:name=".view.RecipeActivity"
             android:label="@string/title_activity_results"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -1,4 +1,4 @@
-package re.neutrino.buoto.ohpuree;
+package re.neutrino.buoto.ohpuree.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.buoto.ohpuree.controller.SearchResultController;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import re.neutrino.buoto.ohpuree.R;
+import re.neutrino.buoto.ohpuree.controller.SearchResultController;
 import re.neutrino.buoto.ohpuree.model.Recipe;
 
 public class ResultsActivity extends AppCompatActivity {
