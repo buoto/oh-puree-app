@@ -44,4 +44,12 @@ public class Recipe {
     public String getName() {
         return name;
     }
+
+    public String printSteps() {
+        StringBuilder sb = new StringBuilder();
+        for (Step step : steps) {
+            sb.append(step);
+        }
+        return sb.toString();
+    }
 }

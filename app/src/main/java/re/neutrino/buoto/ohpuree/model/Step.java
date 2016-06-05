@@ -5,4 +5,10 @@ package re.neutrino.buoto.ohpuree.model;
  */
 public class Step {
     private String text;
+    private int ordinal;
+
+    @Override
+    public String toString() {
+        return String.format("%d. %s\n", ordinal, text);
+    }
 }

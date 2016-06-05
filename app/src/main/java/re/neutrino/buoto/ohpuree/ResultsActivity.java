@@ -18,6 +18,8 @@ import com.example.buoto.ohpuree.controller.SearchResultController;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import re.neutrino.buoto.ohpuree.model.Recipe;
 
 public class ResultsActivity extends AppCompatActivity {
@@ -70,6 +72,7 @@ public class ResultsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     /**
      * Recipe fragment
      */
@@ -114,6 +117,7 @@ public class ResultsActivity extends AppCompatActivity {
                 Picasso.with(getContext())
                         .load(picturePath)
                         .placeholder(R.mipmap.recipe)
+                        .resize(400, 400)
                         .into(picture);
             }
             rootView.setOnClickListener(new View.OnClickListener() {
@@ -137,15 +141,22 @@ public class ResultsActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        private final ArrayList<RecipeFragment> fragments;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+            fragments = new ArrayList<>();
+            for (int i = 0; i < getCount(); i++) {
+                fragments.add(RecipeFragment.newInstance(controller, controller.getRecipe(i)));
+            }
+
         }
 
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a RecipeFragment (defined as a static inner class below).
-            return RecipeFragment.newInstance(controller, controller.getRecipe(position));
+            return fragments.get(position);
         }
 
         @Override
@@ -160,5 +171,6 @@ public class ResultsActivity extends AppCompatActivity {
             }
             return null;
         }
+
     }
 }

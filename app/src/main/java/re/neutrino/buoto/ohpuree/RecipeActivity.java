@@ -3,6 +3,11 @@ package re.neutrino.buoto.ohpuree;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.buoto.ohpuree.controller.RecipeController;
+import com.squareup.picasso.Picasso;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -11,16 +16,28 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        String recipeString = getIntent().getStringExtra("recipe");
+        if (recipeString == null)
+            finish();
+        RecipeController controller = new RecipeController(recipeString);
+        toolbar.setTitle(controller.getTitle());
+
+        TextView textView = (TextView) findViewById(R.id.recipe_text);
+        textView.setText(controller.getText());
+
+        ImageView pictureView = (ImageView) findViewById(R.id.recipe_picture);
+
+        String picturePath = controller.getPicture();
+        if (picturePath.isEmpty()) {
+            pictureView.setImageResource(R.mipmap.recipe);
+        } else {
+            Picasso.with(this)
+                    .load(picturePath)
+                    .placeholder(R.mipmap.recipe)
+                    .resize(400, 400)
+                    .into(pictureView);
+        }
 
     }
 }
