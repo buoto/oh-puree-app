@@ -34,6 +34,9 @@ public abstract class ObjectResponseHandler<T> extends AsyncHttpResponseHandler 
     @Override
     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
         String reponseString = TextHttpResponseHandler.getResponseString(responseBody, DEFAULT_CHARSET);
+        if (reponseString == null) {
+            reponseString = "";
+        }
         onFailure(statusCode, reponseString);
     }
 

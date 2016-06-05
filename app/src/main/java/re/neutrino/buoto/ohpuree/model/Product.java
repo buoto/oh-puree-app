@@ -29,4 +29,8 @@ public class Product {
     public int hashCode() {
         return id;
     }
+
+    public int getId() {
+        return id;
+    }
 }

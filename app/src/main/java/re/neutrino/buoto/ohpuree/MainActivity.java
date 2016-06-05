@@ -8,11 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-
-import com.google.gson.Gson;
-
-import re.neutrino.buoto.ohpuree.model.Product;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -68,20 +63,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == ChooseProductsActivity.SKILL_SELECTED) {
-            Gson gson = new Gson();
-            String json = data.getExtras().getString("product");
-            Product product = gson.fromJson(json, Product.class);
-            addProduct(product);
-        }
-    }
 
-    private void addProduct(Product product) {
-        TextView t = (TextView) findViewById(re.neutrino.buoto.ohpuree.R.id.hello);
-        assert t != null;
-        t.append(product.toString());
-    }
 }

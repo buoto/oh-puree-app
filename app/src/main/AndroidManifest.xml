@@ -23,7 +23,9 @@
         <activity android:name="re.neutrino.buoto.ohpuree.ChooseProductsActivity" />
         <activity
             android:name="re.neutrino.buoto.ohpuree.SearchActivity"
+            android:configChanges="orientation"
             android:label="@string/title_activity_search"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
