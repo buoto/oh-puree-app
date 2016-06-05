@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Recipe {
     private int id;
     private String name;
+    private String picture;
 
     @SerializedName("entries")
     private ArrayList<ProductEntry> products;
@@ -21,4 +22,26 @@ public class Recipe {
 
     @SerializedName("author")
     private int authorID;
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", picture='" + picture + '\'' +
+                ", products=" + products +
+                ", steps=" + steps +
+                ", for_vegans=" + for_vegans +
+                ", for_vegetarians=" + for_vegetarians +
+                ", authorID=" + authorID +
+                '}';
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

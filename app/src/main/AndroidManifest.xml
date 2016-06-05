@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="re.neutrino.buoto.ohpuree.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="re.neutrino.buoto.ohpuree.ChooseProductsActivity" />
+        <activity android:name=".ChooseProductsActivity" />
         <activity
-            android:name="re.neutrino.buoto.ohpuree.SearchActivity"
+            android:name=".SearchActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_search"
             android:screenOrientation="portrait"
@@ -33,6 +33,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ResultsActivity"
+            android:label="@string/title_activity_results"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RecipeActivity"
+            android:label="@string/title_activity_recipe"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
