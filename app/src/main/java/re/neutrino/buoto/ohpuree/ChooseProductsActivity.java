@@ -19,7 +19,7 @@ import re.neutrino.buoto.ohpuree.model.Product;
 
 public class ChooseProductsActivity extends AppCompatActivity {
 
-    public static final int SKILL_SELECTED = 11232;
+    public static final int PRODUCT_SELECTED = 11232;
     private ProductSearchController controller;
     private ListView listView;
     private EditText queryField;
@@ -93,7 +93,7 @@ public class ChooseProductsActivity extends AppCompatActivity {
         String serialized = gson.toJson(chosen);
         Intent intent = new Intent();
         intent.putExtra("product", serialized);
-        setResult(SKILL_SELECTED, intent);
+        setResult(PRODUCT_SELECTED, intent);
         finish();
     }
 

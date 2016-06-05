@@ -92,13 +92,13 @@ public class SearchActivity extends AppCompatActivity {
 
     private void startChoose() {
         Intent intent = new Intent(this, ChooseProductsActivity.class);
-        startActivityForResult(intent, ChooseProductsActivity.SKILL_SELECTED);
+        startActivityForResult(intent, ChooseProductsActivity.PRODUCT_SELECTED);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == ChooseProductsActivity.SKILL_SELECTED) {
+        if (resultCode == ChooseProductsActivity.PRODUCT_SELECTED) {
             Gson gson = new Gson();
             String json = data.getExtras().getString("product");
             Product product = gson.fromJson(json, Product.class);
