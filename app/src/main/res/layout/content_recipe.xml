@@ -13,19 +13,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.cunoraz.tagview.TagView
-            android:id="@+id/prods"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:visibility="gone" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Składniki:"
+            android:id="@+id/ingredients_label"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="12dp" />
+
+        <TextView
+            android:id="@+id/ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/large_text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/recipe_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
+            android:layout_marginLeft="@dimen/text_margin"
             android:text="@string/large_text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 

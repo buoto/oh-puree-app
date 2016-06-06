@@ -11,4 +11,9 @@ public class ProductEntry {
     public Product getProduct() {
         return product;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s\n", amount, unit, product);
+    }
 }

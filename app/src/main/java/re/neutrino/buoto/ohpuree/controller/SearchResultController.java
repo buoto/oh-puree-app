@@ -42,7 +42,9 @@ public class SearchResultController {
     }
 
     public void selectRecipe(Recipe recipe) {
-        resultsActivity.selectRecipe(recipe);
+        Gson g = new Gson();
+        String recipeString = g.toJson(recipe);
+        resultsActivity.selectRecipe(recipeString);
     }
 
 

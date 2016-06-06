@@ -22,6 +22,7 @@ public class Recipe {
 
     @SerializedName("author")
     private int authorID;
+    private int ingredients;
 
     @Override
     public String toString() {
@@ -55,5 +56,21 @@ public class Recipe {
 
     public ArrayList<ProductEntry> getProducts() {
         return products;
+    }
+
+    public boolean isVegetarian() {
+        return for_vegetarians;
+    }
+
+    public boolean isVegan() {
+        return for_vegans;
+    }
+
+    public String printIngredients() {
+        StringBuilder sb = new StringBuilder();
+        for (ProductEntry e : products) {
+            sb.append(e);
+        }
+        return sb.toString();
     }
 }

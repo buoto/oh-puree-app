@@ -32,4 +32,16 @@ public class RecipeController {
     public String getPicture() {
         return recipe.getPicture();
     }
+
+    public boolean isRecipeVegan() {
+        return recipe.isVegan();
+    }
+
+    public boolean isRecipeVege() {
+        return recipe.isVegetarian();
+    }
+
+    public String getIngredients() {
+        return recipe.printIngredients();
+    }
 }
