@@ -52,4 +52,8 @@ public class Recipe {
         }
         return sb.toString();
     }
+
+    public ArrayList<ProductEntry> getProducts() {
+        return products;
+    }
 }

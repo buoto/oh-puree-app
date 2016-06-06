@@ -1,6 +1,7 @@
 package re.neutrino.buoto.ohpuree.view;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,12 +9,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cunoraz.tagview.Tag;
+import com.cunoraz.tagview.TagView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -21,24 +25,13 @@ import java.util.ArrayList;
 
 import re.neutrino.buoto.ohpuree.R;
 import re.neutrino.buoto.ohpuree.controller.SearchResultController;
+import re.neutrino.buoto.ohpuree.model.Product;
+import re.neutrino.buoto.ohpuree.model.ProductEntry;
 import re.neutrino.buoto.ohpuree.model.Recipe;
 
 public class ResultsActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
+    private static final String TAG = "ResultsActivity";
     private SearchResultController controller;
 
 
@@ -48,21 +41,19 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
 
         String response = getIntent().getStringExtra("response");
-        if (response == null)
+        String searchedProducts = getIntent().getStringExtra("products");
+        if (response == null || searchedProducts == null)
             finish();
-        controller = new SearchResultController(this, response);
+        Log.d(TAG, searchedProducts);
+        controller = new SearchResultController(this, response, searchedProducts);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-
+        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager.setAdapter(sectionsPagerAdapter);
     }
 
     public void selectRecipe(Recipe recipe) {
@@ -111,6 +102,37 @@ public class ResultsActivity extends AppCompatActivity {
             textView.setText(recipe.getName());
 
             ImageView picture = (ImageView) rootView.findViewById(R.id.picture);
+            loadPicture(picture);
+
+            initMissingProducts(rootView);
+
+            rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    controller.selectRecipe(recipe);
+                }
+            });
+            return rootView;
+        }
+
+        private void initMissingProducts(View rootView) {
+            TagView missing_prods = (TagView) rootView.findViewById(R.id.missing_prods);
+            for (ProductEntry p : recipe.getProducts()) {
+                Product prod = p.getProduct();
+                if (controller.wasSearched(prod))
+                    continue;
+                if (missing_prods.getVisibility() == View.GONE) {
+                    missing_prods.setVisibility(View.VISIBLE);
+                    TextView label = (TextView) rootView.findViewById(R.id.missing_prods_label);
+                    label.setVisibility(View.VISIBLE);
+                }
+                Tag t = new Tag(prod.getName());
+                t.layoutColor = Color.RED;
+                missing_prods.addTag(t);
+            }
+        }
+
+        private void loadPicture(ImageView picture) {
             String picturePath = recipe.getPicture();
             if (picturePath.isEmpty()) {
                 picture.setImageResource(R.mipmap.recipe);
@@ -121,13 +143,6 @@ public class ResultsActivity extends AppCompatActivity {
                         .resize(400, 400)
                         .into(picture);
             }
-            rootView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    controller.selectRecipe(recipe);
-                }
-            });
-            return rootView;
         }
 
 
@@ -146,6 +161,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+            // preload fragments
             fragments = new ArrayList<>();
             for (int i = 0; i < getCount(); i++) {
                 fragments.add(RecipeFragment.newInstance(controller, controller.getRecipe(i)));

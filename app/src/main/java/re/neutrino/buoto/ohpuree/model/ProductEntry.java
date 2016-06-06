@@ -7,4 +7,8 @@ public class ProductEntry {
     private Product product;
     private String amount;
     private String unit;
+
+    public Product getProduct() {
+        return product;
+    }
 }

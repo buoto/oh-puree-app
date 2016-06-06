@@ -33,7 +33,10 @@ public class SearchActivity extends AppCompatActivity {
 
         initTags();
         initFAB();
+        initButton();
+    }
 
+    private void initButton() {
         Button b = (Button) findViewById(R.id.search_recipes_btn);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +64,7 @@ public class SearchActivity extends AppCompatActivity {
     private void startResults(String responseString) {
         Intent intent = new Intent(this, ResultsActivity.class);
         intent.putExtra("response", responseString);
+        intent.putExtra("products", controller.getProductsJSONString());
         startActivity(intent);
     }
 

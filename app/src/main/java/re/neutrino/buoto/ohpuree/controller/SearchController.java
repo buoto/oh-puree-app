@@ -1,5 +1,6 @@
 package re.neutrino.buoto.ohpuree.controller;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -34,5 +35,10 @@ public class SearchController {
         }
 
         APIClient.get("/search/", params, handler);
+    }
+
+    public String getProductsJSONString() {
+        Gson g = new Gson();
+        return g.toJson(products);
     }
 }
