@@ -3,27 +3,33 @@ package re.neutrino.buoto.ohpuree.api.response;
 import java.util.ArrayList;
 
 /**
- * Created by buoto on 5/21/16.
+ * Structure used to deserialize paged server responses.
+ *
  */
-public class APIPagedResponse<T> {
+class APIPagedResponse<T>
+{
     private int count;
     private String next;
     private String previous;
     private ArrayList<T> results;
 
-    public int getCount() {
+    public int getCount()
+    {
         return count;
     }
 
-    public boolean hasNext() {
+    public boolean hasNext()
+    {
         return next != null;
     }
 
-    public String getNext() {
+    public String getNext()
+    {
         return next;
     }
 
-    public ArrayList<T> getResults() {
+    public ArrayList<T> getResults()
+    {
         return results;
     }
 

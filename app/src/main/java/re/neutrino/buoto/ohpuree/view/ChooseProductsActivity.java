@@ -17,7 +17,12 @@ import com.google.gson.Gson;
 import re.neutrino.buoto.ohpuree.controller.ProductSearchController;
 import re.neutrino.buoto.ohpuree.model.Product;
 
-public class ChooseProductsActivity extends AppCompatActivity {
+/**
+ * Activity which lists products fetched from backend and allows user to select them.
+ */
+
+public class ChooseProductsActivity extends AppCompatActivity
+{
 
     public static final int PRODUCT_SELECTED = 11232;
     private ProductSearchController controller;
@@ -25,70 +30,85 @@ public class ChooseProductsActivity extends AppCompatActivity {
     private EditText queryField;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(re.neutrino.buoto.ohpuree.R.layout.activity_choose_products);
 
         init();
     }
 
-    private void init() {
+    private void init()
+    {
         final ArrayAdapter<Product> adapter = new ArrayAdapter<>(this, re.neutrino.buoto.ohpuree.R.layout.product_item);
         initController(adapter);
         initListView(adapter);
 
         queryField = (EditText) findViewById(re.neutrino.buoto.ohpuree.R.id.query);
-        queryField.addTextChangedListener(new TextWatcher() {
+        queryField.addTextChangedListener(new TextWatcher()
+        {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
 
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable s)
+            {
                 controller.fetchInitial(s.toString());
             }
         });
     }
 
-    private void initController(ArrayAdapter<Product> adapter) {
+    private void initController(ArrayAdapter<Product> adapter)
+    {
         controller = new ProductSearchController(adapter);
         controller.fetchInitial();
     }
 
-    private void initListView(ArrayAdapter<Product> adapter) {
+    private void initListView(ArrayAdapter<Product> adapter)
+    {
         listView = (ListView) findViewById(re.neutrino.buoto.ohpuree.R.id.listView);
         assert listView != null;
         listView.setAdapter(adapter);
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+        listView.setOnScrollListener(new AbsListView.OnScrollListener()
+        {
             @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            public void onScrollStateChanged(AbsListView view, int scrollState)
+            {
 
             }
 
             @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+            {
                 int lastOnScreen = firstVisibleItem + visibleItemCount;
-                if (totalItemCount != 0 && lastOnScreen == totalItemCount) {
+                if (totalItemCount != 0 && lastOnScreen == totalItemCount)
+                {
                     controller.fetchMore();
                 }
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
                 returnProduct((Product) parent.getItemAtPosition(position));
             }
         });
     }
 
-    private void returnProduct(Product chosen) {
+    private void returnProduct(Product chosen)
+    {
         Gson gson = new Gson();
         String serialized = gson.toJson(chosen);
         Intent intent = new Intent();

@@ -1,25 +1,30 @@
 package re.neutrino.buoto.ohpuree.model;
 
 /**
- * Created by buoto on 5/20/16.
+ * Product model used to store product data and deserialize server response entities.
+ *
  */
-public class Product {
+public class Product
+{
     private int id;
     private String name;
     private boolean for_vegans;
     private boolean for_vegetarians;
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return name;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -30,11 +35,13 @@ public class Product {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return id;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 }

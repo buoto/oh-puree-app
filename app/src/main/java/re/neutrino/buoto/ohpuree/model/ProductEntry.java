@@ -1,19 +1,23 @@
 package re.neutrino.buoto.ohpuree.model;
 
 /**
- * Created by buoto on 5/20/16.
+ * RecipeEntry model used to store recipe entry data (product and amount with unit) and deserialize server response entities.
+ *
  */
-public class ProductEntry {
+public class ProductEntry
+{
     private Product product;
     private String amount;
     private String unit;
 
-    public Product getProduct() {
+    public Product getProduct()
+    {
         return product;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return String.format("%s %s %s\n", amount, unit, product);
     }
 }

@@ -5,9 +5,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 /**
- * Created by buoto on 5/20/16.
+ * Recipe model used to store recipe data and deserialize server response.
+ *
  */
-public class Recipe {
+public class Recipe
+{
     private int id;
     private String name;
     private String picture;
@@ -25,7 +27,8 @@ public class Recipe {
     private int ingredients;
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Recipe{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
@@ -38,37 +41,46 @@ public class Recipe {
                 '}';
     }
 
-    public String getPicture() {
+    public String getPicture()
+    {
         return picture;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public String printSteps() {
+    public String printSteps()
+    {
         StringBuilder sb = new StringBuilder();
-        for (Step step : steps) {
+        for (Step step : steps)
+        {
             sb.append(step);
         }
         return sb.toString();
     }
 
-    public ArrayList<ProductEntry> getProducts() {
+    public ArrayList<ProductEntry> getProducts()
+    {
         return products;
     }
 
-    public boolean isVegetarian() {
+    public boolean isVegetarian()
+    {
         return for_vegetarians;
     }
 
-    public boolean isVegan() {
+    public boolean isVegan()
+    {
         return for_vegans;
     }
 
-    public String printIngredients() {
+    public String printIngredients()
+    {
         StringBuilder sb = new StringBuilder();
-        for (ProductEntry e : products) {
+        for (ProductEntry e : products)
+        {
             sb.append(e);
         }
         return sb.toString();

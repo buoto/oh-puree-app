@@ -4,27 +4,33 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import re.neutrino.buoto.ohpuree.AppConfig;
-
 
 /**
- * Created by buoto on 5/20/16.
+ * APIClient is a static class wrapping connection to backend.
+ *
  */
-public class APIClient {
+public class APIClient
+{
+    public static final String API_URL = "http://192.168.43.65:8000";
+
     private static final AsyncHttpClient httpClient = new AsyncHttpClient();
 
-    private APIClient() {
+    private APIClient()
+    {
     }
 
-    public static void get(String path, RequestParams params, AsyncHttpResponseHandler handler) {
+    public static void get(String path, RequestParams params, AsyncHttpResponseHandler handler)
+    {
         httpClient.get(getAbsoluteUrl(path), params, handler);
     }
 
-    public static void post(String path, RequestParams params, AsyncHttpResponseHandler handler) {
+    public static void post(String path, RequestParams params, AsyncHttpResponseHandler handler)
+    {
         httpClient.post(getAbsoluteUrl(path), params, handler);
     }
 
-    private static String getAbsoluteUrl(String path) {
-        return AppConfig.API_URL + path;
+    private static String getAbsoluteUrl(String path)
+    {
+        return API_URL + path;
     }
 }

@@ -3,8 +3,10 @@ package re.neutrino.buoto.ohpuree.api.response;
 import re.neutrino.buoto.ohpuree.model.Recipe;
 
 /**
- * Created by buoto on 5/20/16.
+ * APIPagedResponse specialization for deserializng paged Recipe responses.
+ *
  */
-public class SearchResponse extends APIPagedResponse<Recipe> {
+public class SearchResponse extends APIPagedResponse<Recipe>
+{
 
 }

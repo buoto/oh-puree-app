@@ -10,34 +10,42 @@ import re.neutrino.buoto.ohpuree.api.APIClient;
 import re.neutrino.buoto.ohpuree.model.Product;
 
 /**
- * Created by buoto on 6/5/16.
+ * Controller managing adding products and preparing search query.
+ *
  */
-public class SearchController {
+public class SearchController
+{
 
     private ArrayList<Product> products;
 
-    public SearchController() {
+    public SearchController()
+    {
         products = new ArrayList<>();
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(Product product)
+    {
         products.add(product);
     }
 
-    public void removeProduct(int pos) {
+    public void removeProduct(int pos)
+    {
         products.remove(pos);
     }
 
-    public void search(AsyncHttpResponseHandler handler) {
+    public void search(AsyncHttpResponseHandler handler)
+    {
         RequestParams params = new RequestParams();
-        for (Product p : products) {
+        for (Product p : products)
+        {
             params.add("products", Integer.toString(p.getId()));
         }
 
         APIClient.get("/search/", params, handler);
     }
 
-    public String getProductsJSONString() {
+    public String getProductsJSONString()
+    {
         Gson g = new Gson();
         return g.toJson(products);
     }

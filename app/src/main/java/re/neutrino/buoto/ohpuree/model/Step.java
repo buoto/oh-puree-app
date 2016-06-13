@@ -1,14 +1,18 @@
 package re.neutrino.buoto.ohpuree.model;
 
 /**
- * Created by buoto on 5/20/16.
+ * Step model used to store step data and deserialize server response entities.
+ * Step stores text and ordinal about action in food making process.
+ *
  */
-public class Step {
+public class Step
+{
     private String text;
     private int ordinal;
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return String.format("%d. %s\n", ordinal, text);
     }
 }

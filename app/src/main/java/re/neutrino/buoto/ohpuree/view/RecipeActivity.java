@@ -14,10 +14,16 @@ import com.squareup.picasso.Picasso;
 import re.neutrino.buoto.ohpuree.R;
 import re.neutrino.buoto.ohpuree.controller.RecipeController;
 
-public class RecipeActivity extends AppCompatActivity {
+/**
+ * Activity showing single Recipe chosen by user.
+ */
+
+public class RecipeActivity extends AppCompatActivity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -36,9 +42,11 @@ public class RecipeActivity extends AppCompatActivity {
         ImageView pictureView = (ImageView) findViewById(R.id.recipe_picture);
 
         String picturePath = controller.getPicture();
-        if (picturePath.isEmpty()) {
+        if (picturePath.isEmpty())
+        {
             pictureView.setImageResource(R.mipmap.recipe);
-        } else {
+        } else
+        {
             Picasso.with(this)
                     .load(picturePath)
                     .placeholder(R.mipmap.recipe)
@@ -47,12 +55,14 @@ public class RecipeActivity extends AppCompatActivity {
         }
 
         TagView specs = (TagView) findViewById(R.id.specs);
-        if (controller.isRecipeVegan()) {
+        if (controller.isRecipeVegan())
+        {
             Tag t = new Tag("vegan");
             t.layoutColor = Color.YELLOW;
             specs.addTag(t);
         }
-        if (controller.isRecipeVege()) {
+        if (controller.isRecipeVege())
+        {
             Tag t = new Tag("vege");
             t.layoutColor = getResources().getColor(R.color.colorAccent);
             specs.addTag(t);

@@ -8,24 +8,25 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 import re.neutrino.buoto.ohpuree.R;
-import re.neutrino.buoto.ohpuree.controller.RecipeFragment;
 import re.neutrino.buoto.ohpuree.controller.SearchResultController;
-import re.neutrino.buoto.ohpuree.model.Recipe;
 
-public class ResultsActivity extends AppCompatActivity {
+/**
+ * Activity presenting results of search as swiping tabs.
+ */
 
-    private static final String TAG = "ResultsActivity";
+public class ResultsActivity extends AppCompatActivity
+{
+
     private SearchResultController controller;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
@@ -44,7 +45,8 @@ public class ResultsActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
     }
 
-    public void selectRecipe(String recipe) {
+    public void selectRecipe(String recipe)
+    {
         Intent intent = new Intent(this, RecipeActivity.class);
         intent.putExtra("recipe", recipe);
         startActivity(intent);
@@ -59,35 +61,42 @@ public class ResultsActivity extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter
+    {
 
         private final ArrayList<RecipeFragment> fragments;
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(FragmentManager fm)
+        {
             super(fm);
             // preload fragments
             fragments = new ArrayList<>();
-            for (int i = 0; i < getCount(); i++) {
+            for (int i = 0; i < getCount(); i++)
+            {
                 fragments.add(RecipeFragment.newInstance(controller, controller.getRecipe(i)));
             }
 
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public Fragment getItem(int position)
+        {
             // getItem is called to instantiate the fragment for the given page.
             // Return a RecipeFragment (defined as a static inner class below).
             return fragments.get(position);
         }
 
         @Override
-        public int getCount() {
+        public int getCount()
+        {
             return controller.getCount();
         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
-            if (position < controller.getCount()) {
+        public CharSequence getPageTitle(int position)
+        {
+            if (position < controller.getCount())
+            {
                 return controller.getRecipeName(position);
             }
             return null;
