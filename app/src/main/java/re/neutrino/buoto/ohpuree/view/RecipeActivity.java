@@ -17,10 +17,8 @@ import re.neutrino.buoto.ohpuree.controller.RecipeController;
 /**
  * Activity showing single Recipe chosen by user.
  */
-
 public class RecipeActivity extends AppCompatActivity
 {
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

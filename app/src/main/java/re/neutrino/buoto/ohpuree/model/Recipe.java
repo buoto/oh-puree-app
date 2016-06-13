@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 /**
  * Recipe model used to store recipe data and deserialize server response.
- *
  */
 public class Recipe
 {
@@ -26,6 +25,10 @@ public class Recipe
     private int authorID;
     private int ingredients;
 
+    /**
+     * Defines how to display recipe information
+     * @return recipe information
+     */
     @Override
     public String toString()
     {
@@ -41,16 +44,28 @@ public class Recipe
                 '}';
     }
 
+    /**
+     * Gets the picture of the recipe
+     * @return picture
+     */
     public String getPicture()
     {
         return picture;
     }
 
+    /**
+     * Gets the name of the recipe
+     * @return name
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     * Converts recipe steps into one string
+     * @return recipe steps to print
+     */
     public String printSteps()
     {
         StringBuilder sb = new StringBuilder();
@@ -61,21 +76,37 @@ public class Recipe
         return sb.toString();
     }
 
+    /**
+     * Gets products of the recipe
+     * @return list of products
+     */
     public ArrayList<ProductEntry> getProducts()
     {
         return products;
     }
 
+    /**
+     * Checks out is it vegetarian recipe
+     * @return true - if the recipe is for vegetarian; false - otherwise;
+     */
     public boolean isVegetarian()
     {
         return for_vegetarians;
     }
 
+    /**
+     * Checks out is it vegan recipe
+     * @return true - if the recipe is for vegan; false - otherwise;
+     */
     public boolean isVegan()
     {
         return for_vegans;
     }
 
+    /**
+     * Converts products into one string
+     * @return products to print
+     */
     public String printIngredients()
     {
         StringBuilder sb = new StringBuilder();

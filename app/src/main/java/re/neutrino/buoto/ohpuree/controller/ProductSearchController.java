@@ -14,33 +14,46 @@ import re.neutrino.buoto.ohpuree.api.response.ProductsResponse;
 import re.neutrino.buoto.ohpuree.model.Product;
 
 /**
- * Controller managing fetching recipes from server and serving them to View.
- *
+ * Controller managing fetching products from server and serving them to View.
  */
 public class ProductSearchController
 {
-
     private final ArrayAdapter<Product> adapter;
     private RequestParams nextParams = null;
     private boolean hasMore = false;
 
+    /**
+     * Makes adapter to notify about text field changed
+     * @param adapter that contains found products
+     */
     public ProductSearchController(ArrayAdapter<Product> adapter)
     {
         this.adapter = adapter;
         adapter.setNotifyOnChange(true);
     }
 
+    /**
+     * Search for the first bunch of results
+     */
     public void fetchInitial()
     {
         fetch(true);
     }
 
+    /**
+     * Search for the products which contain given string
+     * @param query string typed
+     */
     public void fetchInitial(String query)
     {
         nextParams = new RequestParams("q", query);
         fetch(true);
     }
 
+    /**
+     * Search for more products
+     * @return true - if there are some more products; false - otherwise;
+     */
     public boolean fetchMore()
     {
         if (!hasMore)
@@ -95,5 +108,4 @@ public class ProductSearchController
             nextParams.add(key, nextUri.getQueryParameter(key));
         }
     }
-
 }

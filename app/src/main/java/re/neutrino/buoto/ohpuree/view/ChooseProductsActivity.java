@@ -20,10 +20,11 @@ import re.neutrino.buoto.ohpuree.model.Product;
 /**
  * Activity which lists products fetched from backend and allows user to select them.
  */
-
 public class ChooseProductsActivity extends AppCompatActivity
 {
-
+    /**
+     * Status code for selected product
+     */
     public static final int PRODUCT_SELECTED = 11232;
     private ProductSearchController controller;
     private ListView listView;

@@ -57,7 +57,6 @@ public class SearchActivity extends AppCompatActivity
 
     private void searchAndShow()
     {
-
         controller.search(new TextHttpResponseHandler()
         {
             @Override

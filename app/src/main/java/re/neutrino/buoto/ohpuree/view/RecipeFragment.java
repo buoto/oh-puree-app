@@ -21,24 +21,22 @@ import re.neutrino.buoto.ohpuree.model.Recipe;
 
 /**
  * Fragment used to represent tabs in SearchResultsView
- *
  */
+
 public class RecipeFragment extends Fragment
 {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
     private Recipe recipe;
     private SearchResultController controller;
 
+    /**
+     * Constructor
+     */
     public RecipeFragment()
     {
     }
 
     /**
-     * Returns a new instance of this fragment for the given section
-     * number.
+     * Returns a new instance of this fragment for the given section number.
      */
     public static RecipeFragment newInstance(SearchResultController controller, Recipe recipe)
     {
@@ -53,6 +51,13 @@ public class RecipeFragment extends Fragment
         this.recipe = recipe;
     }
 
+    /**
+     * Defines look of cards with recipes found
+     * @param inflater used to inflate the view
+     * @param container to set look
+     * @param savedInstanceState not used
+     * @return view created
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState)
@@ -113,7 +118,10 @@ public class RecipeFragment extends Fragment
         }
     }
 
-
+    /**
+     * Sets controller of the view
+     * @param controller to set
+     */
     public void setController(SearchResultController controller)
     {
         this.controller = controller;

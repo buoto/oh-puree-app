@@ -4,9 +4,7 @@ import re.neutrino.buoto.ohpuree.model.Recipe;
 
 /**
  * APIPagedResponse specialization for deserializng paged Recipe responses.
- *
  */
 public class SearchResponse extends APIPagedResponse<Recipe>
 {
-
 }

@@ -20,9 +20,7 @@ import re.neutrino.buoto.ohpuree.controller.SearchResultController;
 
 public class ResultsActivity extends AppCompatActivity
 {
-
     private SearchResultController controller;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +43,10 @@ public class ResultsActivity extends AppCompatActivity
         viewPager.setAdapter(sectionsPagerAdapter);
     }
 
+    /**
+     * Selects recipe to display in separate view
+     * @param recipe chosen to display
+     */
     public void selectRecipe(String recipe)
     {
         Intent intent = new Intent(this, RecipeActivity.class);
@@ -52,18 +54,11 @@ public class ResultsActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-
     /**
-     * Recipe fragment
-     */
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter
     {
-
         private final ArrayList<RecipeFragment> fragments;
 
         public SectionsPagerAdapter(FragmentManager fm)
